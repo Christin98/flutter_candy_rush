@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_candy_rush/bloc/bloc_provider.dart';
+import 'package:flutter_candy_rush/bloc/game_bloc.dart';
+import 'package:flutter_candy_rush/game_widgets/shadowed_text.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -46,6 +49,11 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
 
   @override
   Widget build(BuildContext context) {
+    GameBloc? gameBloc = BlocProvider.of<GameBloc>(context);
+    MediaQueryData mediaQueryData = MediaQuery.of(context);
+    Size screenSize = mediaQueryData.size;
+    double levelsWidth = -100.0 + ((mediaQueryData.orientation == Orientation.portrait) ? screenSize.width : screenSize.height);
+
     return Scaffold(
       body: WillPopScope(
         // No way to get back
@@ -64,6 +72,31 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
               alignment: Alignment.bottomLeft,
               child: Padding(
                 padding: EdgeInsets.all(8.0),
+                child: ShadowedText(
+                  text: 'by Christin Koshy',
+                  color: Colors.white,
+                  fontSize: 12.0,
+                  offset: Offset(1.0, 1.0),
+                ),
+              ),
+            ),
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: AspectRatio(
+                aspectRatio: 1.0,
+                child: Container(
+                  width: levelsWidth,
+                  height: levelsWidth,
+                  child: GridView.builder(
+                      itemCount: gameBloc?.numberOfLevels,
+                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 3,
+                        childAspectRatio: 1.01,
+                      ),
+                      itemBuilder: (BuildContext context, int index) {
+
+                      }),
+                ),
               ),
             )
           ],

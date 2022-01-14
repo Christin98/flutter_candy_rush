@@ -24,7 +24,24 @@ class ShadowedText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
-    throw UnimplementedError();
+    return Stack(children: <Widget>[
+      Transform.translate(
+          offset: offset,
+        child: Text(
+          text,
+          style: TextStyle(
+              fontSize: fontSize,
+              color: Colors.black.withOpacity(shadowOpacity)
+          ),
+        ),
+      ),
+      Text(
+        text,
+        style: TextStyle(
+          fontSize: fontSize,
+          color: color,
+        ),
+      ),
+    ],);
   }
 }
