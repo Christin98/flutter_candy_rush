@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_candy_rush/bloc/bloc_provider.dart';
 import 'package:flutter_candy_rush/bloc/game_bloc.dart';
+import 'package:flutter_candy_rush/game_widgets/game_level_button.dart';
 import 'package:flutter_candy_rush/game_widgets/shadowed_text.dart';
 
 class HomePage extends StatefulWidget {
@@ -94,7 +95,16 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                         childAspectRatio: 1.01,
                       ),
                       itemBuilder: (BuildContext context, int index) {
+                        return GameLevelButton(
+                          width: 80.0,
+                          height: 60.0,
+                          borderRadius: 50.0,
+                          text: 'Level ${index + 1}',
+                          onTap: () async {
 
+                            // Open the Game Page
+                          },
+                        );
                       }),
                 ),
               ),
