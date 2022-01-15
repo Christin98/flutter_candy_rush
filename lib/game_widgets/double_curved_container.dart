@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class DoubleCurvedContainer extends StatelessWidget {
-  DoubleCurvedContainer({
+  const DoubleCurvedContainer({
     Key? key,
     required this.width,
     required this.height,

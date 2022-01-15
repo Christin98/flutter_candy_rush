@@ -1,8 +1,9 @@
+// @dart=2.9
 class Array2d<T> {
-  late List<List<T>> array;
-  T? defaultValue;
-  late int _width;
-  late int _height;
+  List<List<T>> array;
+  T defaultValue;
+  int _width;
+  int _height;
 
   Array2d(int width, int height, {this.defaultValue}) {
     array = <List<T>>[];
@@ -21,7 +22,7 @@ class Array2d<T> {
       List<T> newList = <T>[];
       if (array.isNotEmpty) {
         for (int y = 0; y < array.first.length; y++) {
-          newList.add(defaultValue!);
+          newList.add(defaultValue);
         }
       }
       array.add(newList);
@@ -37,7 +38,7 @@ class Array2d<T> {
     }
     while (array.first.length < v) {
       for (int x = 0; x < array.length; x++) {
-        array[x].add(defaultValue!);
+        array[x].add(defaultValue);
       }
     }
   }

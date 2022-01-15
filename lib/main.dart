@@ -4,6 +4,7 @@ import 'package:flutter_candy_rush/application.dart';
 
 void main() async {
 
+  WidgetsFlutterBinding.ensureInitialized();
   //
   // Initialize the audio
   //
@@ -13,7 +14,7 @@ void main() async {
   //
   SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
 
-  return runApp( const Application());
+  return runApp( Application());
 }
 
 

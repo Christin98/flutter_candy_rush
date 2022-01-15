@@ -1,3 +1,4 @@
+// @dart=2.9
 import 'package:flutter_candy_rush/helpers/array_2d.dart';
 import 'package:flutter_candy_rush/model/objective.dart';
 import 'package:quiver/iterables.dart';
@@ -13,13 +14,13 @@ import 'package:quiver/iterables.dart';
 ///  - list of objectives
 ///
 class Level extends Object {
-  late final int _index;
-  late Array2d grid;
-  late final int _rows;
-  late final int _cols;
-  late List<Objective> _objectives;
-  late final int _maxMoves;
-  late int _movesLeft;
+  final int _index;
+  Array2d grid;
+  final int _rows;
+  final int _cols;
+  List<Objective> _objectives;
+  final int _maxMoves;
+  int _movesLeft;
 
   //
   // Variables that depend on the physical layout of the device
@@ -37,7 +38,7 @@ class Level extends Object {
         _maxMoves = json["moves"]
       {
         // Initialize the grid to the dimensions
-        grid = Array2d(_rows, _cols,);
+        grid = Array2d(_rows, _cols);
 
         // Populate the grid from the definition
         //

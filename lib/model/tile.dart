@@ -1,3 +1,4 @@
+// @dart=2.9
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_candy_rush/model/level.dart';
@@ -6,14 +7,14 @@ import 'package:flutter_candy_rush/model/level.dart';
 /// Tile
 ///
 class Tile extends Object {
-  late TileType? type;
+  TileType type;
   int row;
   int col;
-  late Level? level;
+  Level level;
   int depth;
-  late Widget _widget;
-  late double x;
-  late double y;
+  Widget _widget;
+  double x;
+  double y;
   bool visible;
 
   Tile({
@@ -26,7 +27,7 @@ class Tile extends Object {
 });
 
   @override
-  int get hashCode => row * level!.numberOfRows + col;
+  int get hashCode => row * level.numberOfRows + col;
 
   @override
   bool operator ==(dynamic other) {
@@ -35,7 +36,7 @@ class Tile extends Object {
 
   @override
   String toString() {
-    return '[$row][$col] => ${describeEnum(type!)}';
+    return '[$row][$col] => ${describeEnum(type)}';
   }
 
   //
@@ -92,7 +93,7 @@ class Tile extends Object {
 
         default:
           try {
-            imageAsset = "tiles/${describeEnum(type!)}.png";
+            imageAsset = "tiles/${describeEnum(type)}.png";
           } catch(e) {
             return Container();
           }
@@ -115,9 +116,9 @@ class Tile extends Object {
   // the dimensions of the board and a tile
   //
   void setPosition() {
-    double bottom = level!.boardTop + (level!.numberOfRows - 1) * level!.tileHeight;
-    x = level!.boardLeft + col * level!.tileWidth;
-    y = bottom - row * level!.tileHeight;
+    double bottom = level.boardTop + (level.numberOfRows - 1) * level.tileHeight;
+    x = level.boardLeft + col * level.tileWidth;
+    y = bottom - row * level.tileHeight;
   }
 //
 // Generate a tile to be used during the swap animations

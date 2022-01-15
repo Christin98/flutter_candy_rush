@@ -1,3 +1,4 @@
+// @dart=2.9
 import 'package:flutter_candy_rush/model/tile.dart';
 
 ///
@@ -6,7 +7,7 @@ import 'package:flutter_candy_rush/model/tile.dart';
 /// One objective for a level.
 ///
 class Objective extends Object {
-  TileType? type;
+  TileType type;
   int count = 0;
   int initialValue = 0;
   bool completed = false;
@@ -27,7 +28,7 @@ class Objective extends Object {
 
 
   @override
-  int get hashCode => type!.index;
+  int get hashCode => type.index;
 
 //
 // Decrements the number of times this objective needs to be met.
