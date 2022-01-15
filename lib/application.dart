@@ -17,7 +17,8 @@ class Application extends StatelessWidget {
           primarySwatch: Colors.blue,
         ),
         home: const HomePage(),
-      ), );
+      ),
+    );
   }
 
 }

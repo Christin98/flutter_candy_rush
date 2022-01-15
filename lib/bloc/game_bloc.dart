@@ -1,4 +1,9 @@
+import 'dart:convert';
+
+import 'package:flutter/services.dart';
 import 'package:flutter_candy_rush/bloc/bloc_provider.dart';
+import 'package:flutter_candy_rush/model/level.dart';
+import 'package:quiver/iterables.dart';
 
 class GameBloc implements BlocBase {
   // Max number of tiles per row (and per column)
@@ -27,7 +32,7 @@ class GameBloc implements BlocBase {
 //
 // List of all level definitions
 //
-
+  List<Level> _levels = <Level>[];
   int _maxLevel = 0;
   int _levelNumber = 0;
   int get levelNumber => _levelNumber;
@@ -41,12 +46,40 @@ class GameBloc implements BlocBase {
 // Constructor
 //
   GameBloc() {
-
+    // Load all levels definitions
+    _loadLevels();
   }
 
   @override
   void dispose() {
     // TODO: implement dispose
   }
+
+//
+// The user wants to select a level.
+// We validate the level number and emit the requested Level
+//
+// We use the [async] keyword to allow the caller to use a Future
+//
+//  e.g.  bloc.setLevel(1).then(() => )
+//
+ Future<Level> setLevel(int levelIndex) async {
+    _levelNumber = (levelIndex - 1).clamp(0, _maxLevel);
+    return _levels[_levelNumber];
+ }
+
+//
+// Load the levels definitions from assets
+//
+  
+  _loadLevels() async {
+    String jsonContent = await rootBundle.loadString("assets/levels.json");
+    Map<dynamic, dynamic> list = json.decode(jsonContent);
+    enumerate(list["levels"] as List).forEach((levelItem) {
+      _levels.add(Level.fromJson(levelItem.value));
+      _maxLevel++;
+    });
+  }
+ 
 
 }

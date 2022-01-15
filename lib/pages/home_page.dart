@@ -6,6 +6,8 @@ import 'package:flutter_candy_rush/game_widgets/double_curved_container.dart';
 import 'package:flutter_candy_rush/game_widgets/game_level_button.dart';
 import 'package:flutter_candy_rush/game_widgets/shadowed_text.dart';
 
+import '../model/level.dart';
+
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
@@ -103,7 +105,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                           borderRadius: 50.0,
                           text: 'Level ${index + 1}',
                           onTap: () async {
-
+                            Level? newLevel = await gameBloc?.setLevel(index + 1);
                             // Open the Game Page
                           },
                         );
