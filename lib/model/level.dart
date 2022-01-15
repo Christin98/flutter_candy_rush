@@ -36,7 +36,7 @@ class Level extends Object {
         _maxMoves = json["moves"]
       {
         // Initialize the grid to the dimensions
-        grid = Array2d(_rows, _cols);
+        grid = Array2d(_rows, _cols,);
 
         // Populate the grid from the definition
         //
