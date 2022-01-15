@@ -27,7 +27,7 @@ class Objective extends Object {
 
 
   @override
-  int get hashCode => type.index;
+  int get hashCode => type!.index;
 
 //
 // Decrements the number of times this objective needs to be met.

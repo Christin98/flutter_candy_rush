@@ -1,4 +1,5 @@
 import 'package:flutter_candy_rush/helpers/array_2d.dart';
+import 'package:flutter_candy_rush/model/objective.dart';
 import 'package:quiver/iterables.dart';
 
 ///
@@ -16,7 +17,7 @@ class Level extends Object {
   late Array2d grid;
   late final int _rows;
   late final int _cols;
-  // List<>
+  late List<Objective> _objectives;
   late final int _maxMoves;
   late int _movesLeft;
 
@@ -53,8 +54,12 @@ class Level extends Object {
         });
 
         // Retrieve the objectives
+        _objectives = (json["objective"] as List).map((item) {
+          return Objective(item);
+        }).toList();
 
         // First-time initialization
+        resetObjectives();
       }
       @override
       String toString() {
@@ -66,12 +71,18 @@ class Level extends Object {
   int get index => _index;
   int get maxMoves => _maxMoves;
   int get movesLeft => _movesLeft;
-  // List
+  List<Objective> get objectives => List.unmodifiable(_objectives);
 
 //
 // Reset the objectives
 //
 
+  void resetObjectives() {
+    for (var objective in _objectives) {
+      objective.reset();
+    }
+    _movesLeft = _maxMoves;
+  }
 
 //
 // Decrement the number of moves left
